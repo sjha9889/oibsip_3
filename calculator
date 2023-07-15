@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    <div class="input-group">
+      <input type="text" id="temperatureInput" placeholder="Enter temperature">
+      <select id="unitSelect">
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+      </select>
+    </div>
+    <button onclick="convertTemperature()">Convert</button>
+    <div id="result" class="output"></div>
+  </div>
+
+  <style> 
+  body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 5px;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.output {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+  </style>
+
+  <script> 
+  function convertTemperature() {
+  var input = document.getElementById("temperatureInput").value;
+  var unit = document.getElementById("unitSelect").value;
+  var resultElement = document.getElementById("result");
+
+  // Clear previous result
+  resultElement.innerHTML = "";
+
+  // Validate input as a number
+  if (isNaN(input)) {
+    resultElement.innerHTML = "Please enter a valid number.";
+    return;
+  }
+
+  // Convert temperature
+  var convertedTemp;
+  if (unit === "celsius") {
+    convertedTemp = (input * 9/5) + 32;
+    resultElement.innerHTML = input + " °C is " + convertedTemp + " °F";
+  } else if (unit === "fahrenheit") {
+    convertedTemp = (input - 32) * 5/9;
+    resultElement.innerHTML = input + " °F is " + convertedTemp + " °C";
+  }
+}
+
+  
+  </script>
+</body>
+</html>
